@@ -1,0 +1,28 @@
+﻿Line Coverage Only
+(-2, -1, -2)
+
+
+Line and Branch Coverage Only
+(-3, -1, -3)
+(-3, -2, -3)
+
+
+Conditional Coverage Only
+(0, -1, -1)
+(-1, -3, 0)
+
+
+Line, Branch, Condition, and Branch & Condition Only
+(-1, -1, 0)
+(0, -2, -1)
+
+
+Line, Branch, Condition, Branch & Condition, and Multiple Condition
+(1, -1, 0)
+(1, -2, 0)
+(1, -1, -1)
+(1, -2, -1)
+(-1, -1, 0)
+(-1, -2, 0)
+(-1, -1, -1)
+(-1, -2, -1)
