@@ -7,7 +7,7 @@ public class Triangle {
     public static final int ISOSCELES = 1;
     public static final int EQUILATERAL = 2;
 
-    public static int triangle_identifier(int a, int b, int c) {
+    public static int triangleIdentifier(int a, int b, int c) {
 
         boolean isATriangle;
 

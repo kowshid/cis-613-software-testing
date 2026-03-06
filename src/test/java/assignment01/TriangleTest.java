@@ -85,6 +85,6 @@ class TriangleTest {
     @Test
     void isValidIntegerBoundaryValueCovered() {
         assertEquals(Triangle.EQUILATERAL, Triangle.triangleIdentifier(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE));
-        assertEquals(Triangle.EQUILATERAL, Triangle.triangleIdentifier(Integer.MAX_VALUE, Integer.MAX_VALUE, 1));
+        assertEquals(Triangle.ISOSCELES, Triangle.triangleIdentifier(Integer.MAX_VALUE, Integer.MAX_VALUE, 1));
     }
 }
