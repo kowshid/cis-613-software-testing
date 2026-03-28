@@ -1,5 +1,4 @@
 import pytest
-import sys
 from src.triangle import triangle_identifier, EQUILATERAL, SCALENE, ISOSCELES, INVALID
 
 POSITIVE_SIDE_LENGTH = 10
@@ -79,3 +78,54 @@ def test_does_above_max_side_return_invalid_triangle():
     assert triangle_identifier(MAX_SIDE_LENGTH + 1, POSITIVE_SIDE_LENGTH, POSITIVE_SIDE_LENGTH) == INVALID
     assert triangle_identifier(POSITIVE_SIDE_LENGTH, MAX_SIDE_LENGTH + 1, POSITIVE_SIDE_LENGTH) == INVALID
     assert triangle_identifier(POSITIVE_SIDE_LENGTH, POSITIVE_SIDE_LENGTH, MAX_SIDE_LENGTH + 1) == INVALID
+
+
+def test_normal_bva_a_varies():
+    assert triangle_identifier(100, 100, 100) == EQUILATERAL
+    assert triangle_identifier(MIN_SIDE_LENGTH, 100, 100) == ISOSCELES
+    assert triangle_identifier(MIN_SIDE_LENGTH + 1, 100, 100) == ISOSCELES
+    assert triangle_identifier(MAX_SIDE_LENGTH - 1, 100, 100) == ISOSCELES
+    assert triangle_identifier(MAX_SIDE_LENGTH, 100, 100) == INVALID
+
+
+def test_normal_bva_b_varies():
+    assert triangle_identifier(100, 100, 100) == EQUILATERAL
+    assert triangle_identifier(100, MIN_SIDE_LENGTH, 100) == ISOSCELES
+    assert triangle_identifier(100, MIN_SIDE_LENGTH + 1, 100) == ISOSCELES
+    assert triangle_identifier(100, MAX_SIDE_LENGTH - 1, 100) == ISOSCELES
+    assert triangle_identifier(100, MAX_SIDE_LENGTH, 100) == INVALID
+
+
+def test_normal_bva_c_varies():
+    assert triangle_identifier(100, 100, 100) == EQUILATERAL
+    assert triangle_identifier(100, 100, MIN_SIDE_LENGTH) == ISOSCELES
+    assert triangle_identifier(100, 100, MIN_SIDE_LENGTH + 1) == ISOSCELES
+    assert triangle_identifier(100, 100, MAX_SIDE_LENGTH - 1) == ISOSCELES
+    assert triangle_identifier(100, 100, MAX_SIDE_LENGTH) == INVALID
+
+
+def test_weak_normal_equivalence_class():
+    assert triangle_identifier(5, 5, 5) == EQUILATERAL
+    assert triangle_identifier(2, 2, 3) == ISOSCELES
+    assert triangle_identifier(3, 4, 5) == SCALENE
+    assert triangle_identifier(4, 1, 2) == INVALID
+
+
+def test_weak_robust_lower_bound_single_violation():
+    assert triangle_identifier(MIN_SIDE_LENGTH - 1, 5, 5) == INVALID
+    assert triangle_identifier(5, MIN_SIDE_LENGTH - 1, 5) == INVALID
+    assert triangle_identifier(5, 5, MIN_SIDE_LENGTH - 1) == INVALID
+
+
+def test_weak_robust_upper_bound_single_violation():
+    assert triangle_identifier(MAX_SIDE_LENGTH + 1, 5, 5) == INVALID
+    assert triangle_identifier(5, MAX_SIDE_LENGTH + 1, 5) == INVALID
+    assert triangle_identifier(5, 5, MAX_SIDE_LENGTH + 1) == INVALID
+
+
+def test_decision_table_rule2_b_violates_triangle_inequality():
+    assert triangle_identifier(3, 10, 3) == INVALID
+
+
+def test_decision_table_rule3_c_violates_triangle_inequality():
+    assert triangle_identifier(3, 3, 10) == INVALID
