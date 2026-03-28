@@ -123,9 +123,35 @@ def test_weak_robust_upper_bound_single_violation():
     assert triangle_identifier(5, 5, MAX_SIDE_LENGTH + 1) == INVALID
 
 
-def test_decision_table_rule2_b_violates_triangle_inequality():
-    assert triangle_identifier(3, 10, 3) == INVALID
+# "Rule","Test Case Description","a","b","c","Expected Output","Rationale"
+# "R1","Out of bounds input",0,5,5,-1,"Fails C1 (a < 1). Function should exit early."
+# "R2","Fails Triangle Inequality",1,2,4,-1,"Fails C2 (1 + 2 is not > 4)."
+# "R3","All sides equal",5,5,5,2,"Passes C3, C4, C5."
+# "R4","Isosceles (a and b equal)",5,5,3,1,"Passes C3, fails C4 & C5."
+# "R5","Isosceles (b and c equal)",3,5,5,1,"Passes C4, fails C3 & C5."
+# "R6","Isosceles (a and c equal)",5,3,5,1,"Passes C5, fails C3 & C4."
+# "R7","No sides equal",3,4,5,0,"Fails C3, C4, C5."
 
+def test_dt_rule_1_out_of_bounds():
+    assert triangle_identifier(MIN_SIDE_LENGTH - 1, 5, 5) == INVALID
+    assert triangle_identifier(MAX_SIDE_LENGTH + 1, 5, 5) == INVALID
 
-def test_decision_table_rule3_c_violates_triangle_inequality():
-    assert triangle_identifier(3, 3, 10) == INVALID
+def test_dt_rule_2_fails_triangle_inequality():
+    assert triangle_identifier(1, 2, 4) == INVALID
+    assert triangle_identifier(4, 1, 2) == INVALID
+    assert triangle_identifier(2, 4, 1) == INVALID
+
+def test_dt_rule_3_equilateral():
+    assert triangle_identifier(5, 5, 5) == EQUILATERAL
+
+def test_dt_rule_4_isosceles_ab():
+    assert triangle_identifier(5, 5, 3) == ISOSCELES
+
+def test_dt_rule_5_isosceles_bc():
+    assert triangle_identifier(3, 5, 5) == ISOSCELES
+
+def test_dt_rule_6_isosceles_ac():
+    assert triangle_identifier(5, 3, 5) == ISOSCELES
+
+def test_dt_rule_7_scalene():
+    assert triangle_identifier(3, 4, 5) == SCALENE
