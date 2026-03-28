@@ -6,15 +6,14 @@ EQUILATERAL = 2
 
 def triangle_identifier(a, b, c):
 
-    is_a_triangle = None
+    if not (1 <= a <= 200) or not (1 <= b <= 200) or not (1 <= c <= 200):
+        return INVALID
 
-    # Is A Triangle?
     if (a < b + c) and (b < a + c) and (c < a + b):
         is_a_triangle = True
     else:
         is_a_triangle = False
 
-    # Determine Triangle Type
     triangle_type = INVALID
     if is_a_triangle:
         if (a == b) and (b == c):
