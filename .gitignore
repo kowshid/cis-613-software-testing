@@ -5,6 +5,7 @@ target/
 .kotlin
 .venv/
 .mutmut-cache
+__pycache__/
 
 ### IntelliJ IDEA ###
 *.iws
