@@ -5,10 +5,12 @@ EQUILATERAL = 2
 
 
 def triangle_identifier(a, b, c):
-    if not (1 <= a <= 200) or not (1 <= b <= 200) or not (1 <= c <= 200):
-        return INVALID
 
-    if (a < b + c) and (b < a + c) and (c < a + b):
+    is_a_triangle = None
+
+    if not (1 <= a <= 200) or not (1 <= b <= 200) or not (1 <= c <= 200):
+        is_a_triangle = False
+    elif (a < b + c) and (b < a + c) and (c < a + b):
         is_a_triangle = True
     else:
         is_a_triangle = False
