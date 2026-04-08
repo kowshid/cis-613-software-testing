@@ -4,19 +4,19 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class TriangleTest {
+public class TriangleTest {
 
-    private static final int POSITIVE_SIDE_LENGTH = 10;
-    private static final int NEGATIVE_SIDE_LENGTH = -10;
-    private static final int ZERO_SIDE_LENGTH = 0;
+    public static final int POSITIVE_SIDE_LENGTH = 10;
+    public static final int NEGATIVE_SIDE_LENGTH = -10;
+    public static final int ZERO_SIDE_LENGTH = 0;
 
     @Test
-    void doesEqualSidesReturnAEquilateralTriangle() {
+    public void doesEqualSidesReturnAEquilateralTriangle() {
         assertEquals(Triangle.EQUILATERAL, Triangle.triangleIdentifier(POSITIVE_SIDE_LENGTH, POSITIVE_SIDE_LENGTH, POSITIVE_SIDE_LENGTH));
     }
 
     @Test
-    void doesUnequalSidesReturnAScaleneTriangle() {
+    public void doesUnequalSidesReturnAScaleneTriangle() {
         assertEquals(Triangle.SCALENE, Triangle.triangleIdentifier(POSITIVE_SIDE_LENGTH, POSITIVE_SIDE_LENGTH - 1, POSITIVE_SIDE_LENGTH + 1));
         assertEquals(Triangle.SCALENE, Triangle.triangleIdentifier(POSITIVE_SIDE_LENGTH, POSITIVE_SIDE_LENGTH + 1, POSITIVE_SIDE_LENGTH - 1));
         assertEquals(Triangle.SCALENE, Triangle.triangleIdentifier(POSITIVE_SIDE_LENGTH - 1, POSITIVE_SIDE_LENGTH, POSITIVE_SIDE_LENGTH + 1));
@@ -26,26 +26,26 @@ class TriangleTest {
     }
 
     @Test
-    void doesTwoEqualSidesReturnAIsoscelesTriangle() {
+    public void doesTwoEqualSidesReturnAIsoscelesTriangle() {
         assertEquals(Triangle.ISOSCELES, Triangle.triangleIdentifier(POSITIVE_SIDE_LENGTH, POSITIVE_SIDE_LENGTH, POSITIVE_SIDE_LENGTH - 1));
         assertEquals(Triangle.ISOSCELES, Triangle.triangleIdentifier(POSITIVE_SIDE_LENGTH, POSITIVE_SIDE_LENGTH - 1, POSITIVE_SIDE_LENGTH));
         assertEquals(Triangle.ISOSCELES, Triangle.triangleIdentifier(POSITIVE_SIDE_LENGTH - 1, POSITIVE_SIDE_LENGTH, POSITIVE_SIDE_LENGTH));
     }
 
     @Test
-    void doesAllNegativeSidesReturnAnInvalidTriangle() {
+    public void doesAllNegativeSidesReturnAnInvalidTriangle() {
         assertEquals(Triangle.INVALID, Triangle.triangleIdentifier(NEGATIVE_SIDE_LENGTH, NEGATIVE_SIDE_LENGTH, NEGATIVE_SIDE_LENGTH));
     }
 
     @Test
-    void doesTwoNegativeSidesReturnAnInvalidTriangle() {
+    public void doesTwoNegativeSidesReturnAnInvalidTriangle() {
         assertEquals(Triangle.INVALID, Triangle.triangleIdentifier(NEGATIVE_SIDE_LENGTH, NEGATIVE_SIDE_LENGTH, POSITIVE_SIDE_LENGTH));
         assertEquals(Triangle.INVALID, Triangle.triangleIdentifier(NEGATIVE_SIDE_LENGTH, POSITIVE_SIDE_LENGTH, NEGATIVE_SIDE_LENGTH));
         assertEquals(Triangle.INVALID, Triangle.triangleIdentifier(POSITIVE_SIDE_LENGTH, NEGATIVE_SIDE_LENGTH, NEGATIVE_SIDE_LENGTH));
     }
 
     @Test
-    void doesOneNegativeSideReturnAnInvalidTriangle() {
+    public void doesOneNegativeSideReturnAnInvalidTriangle() {
         assertEquals(Triangle.INVALID, Triangle.triangleIdentifier(NEGATIVE_SIDE_LENGTH, POSITIVE_SIDE_LENGTH, POSITIVE_SIDE_LENGTH));
         assertEquals(Triangle.INVALID, Triangle.triangleIdentifier(POSITIVE_SIDE_LENGTH, NEGATIVE_SIDE_LENGTH, POSITIVE_SIDE_LENGTH));
         assertEquals(Triangle.INVALID, Triangle.triangleIdentifier(POSITIVE_SIDE_LENGTH, POSITIVE_SIDE_LENGTH, NEGATIVE_SIDE_LENGTH));
@@ -53,32 +53,32 @@ class TriangleTest {
     }
 
     @Test
-    void doesAllZeroSidesReturnAnInvalidTriangle() {
+    public void doesAllZeroSidesReturnAnInvalidTriangle() {
         assertEquals(Triangle.INVALID, Triangle.triangleIdentifier(ZERO_SIDE_LENGTH, ZERO_SIDE_LENGTH, ZERO_SIDE_LENGTH));
     }
 
     @Test
-    void doesTwoZeroSidesReturnAnInvalidTriangle() {
+    public void doesTwoZeroSidesReturnAnInvalidTriangle() {
         assertEquals(Triangle.INVALID, Triangle.triangleIdentifier(ZERO_SIDE_LENGTH, ZERO_SIDE_LENGTH, POSITIVE_SIDE_LENGTH));
         assertEquals(Triangle.INVALID, Triangle.triangleIdentifier(ZERO_SIDE_LENGTH, POSITIVE_SIDE_LENGTH, ZERO_SIDE_LENGTH));
         assertEquals(Triangle.INVALID, Triangle.triangleIdentifier(POSITIVE_SIDE_LENGTH, ZERO_SIDE_LENGTH, ZERO_SIDE_LENGTH));
     }
 
     @Test
-    void doesOneZeroSideReturnAnInvalidTriangle() {
+    public void doesOneZeroSideReturnAnInvalidTriangle() {
         assertEquals(Triangle.INVALID, Triangle.triangleIdentifier(ZERO_SIDE_LENGTH, POSITIVE_SIDE_LENGTH, POSITIVE_SIDE_LENGTH));
         assertEquals(Triangle.INVALID, Triangle.triangleIdentifier(POSITIVE_SIDE_LENGTH, ZERO_SIDE_LENGTH, POSITIVE_SIDE_LENGTH));
         assertEquals(Triangle.INVALID, Triangle.triangleIdentifier(POSITIVE_SIDE_LENGTH, POSITIVE_SIDE_LENGTH, ZERO_SIDE_LENGTH));
     }
 
     @Test
-    void doesOneBigSideReturnAnInvalidTriangle() {
+    public void doesOneBigSideReturnAnInvalidTriangle() {
         assertEquals(Triangle.INVALID, Triangle.triangleIdentifier(POSITIVE_SIDE_LENGTH * 3, POSITIVE_SIDE_LENGTH, POSITIVE_SIDE_LENGTH));
         assertEquals(Triangle.INVALID, Triangle.triangleIdentifier(POSITIVE_SIDE_LENGTH * 3, POSITIVE_SIDE_LENGTH * 2, POSITIVE_SIDE_LENGTH));
     }
 
     @Test
-    void isValidTriangleBoundaryValueCovered() {
+    public void isValidTriangleBoundaryValueCovered() {
         assertEquals(Triangle.SCALENE, Triangle.triangleIdentifier(POSITIVE_SIDE_LENGTH * 3, POSITIVE_SIDE_LENGTH * 2, POSITIVE_SIDE_LENGTH + 1));
     }
 
